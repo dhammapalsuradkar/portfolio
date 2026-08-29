@@ -7,14 +7,19 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { getDevice } from "../comps/helper";
 
 const Footer = () => {
+  const device = getDevice();
+
   return (
     <div className="main-container footer-banner-wrapper" id="contact">
       <footer className="footer-bar">
         {/* Arrow/Chevron avatar badge on the left */}
         <div className="footer-avatar-badge">
-          <AccountCircleOutlinedIcon style={{ fontSize: 28, color: "#ffffff" }} />
+          <AccountCircleOutlinedIcon
+            style={{ fontSize: 28, color: "#ffffff" }}
+          />
         </div>
 
         {/* Contact info cards */}
@@ -25,7 +30,9 @@ const Footer = () => {
             </div>
             <div className="footer-contact-text">
               <span className="footer-contact-label">LOCATION</span>
-              <span className="footer-contact-value">Buldhana, Maharashtra, India</span>
+              <span className="footer-contact-value">
+                Buldhana, Maharashtra, India
+              </span>
             </div>
           </div>
 
@@ -39,7 +46,9 @@ const Footer = () => {
             </div>
             <div className="footer-contact-text">
               <span className="footer-contact-label">EMAIL</span>
-              <span className="footer-contact-value">dsuradkar111@gmail.com</span>
+              <span className="footer-contact-value">
+                dsuradkar111@gmail.com
+              </span>
             </div>
           </a>
 
@@ -57,6 +66,8 @@ const Footer = () => {
             </div>
           </a>
         </div>
+
+        {device === "mobile" && <hr />}
 
         {/* Social links */}
         <div className="footer-socials">

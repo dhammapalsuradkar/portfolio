@@ -1267,9 +1267,9 @@ body {
     display: none;
   }
 
-  .mobile-menu-btn {
+  /* .mobile-menu-btn {
     display: block;
-  }
+  } */
 
   .hero-title {
     font-size: 36px;
@@ -1312,5 +1312,46 @@ body {
   .footer-socials {
     padding: 0;
     justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-dot-grid-center {
+    top: 35px;
+    left: 25%;
+  }
+  .hero-visual-dots {
+    top: 345px;
+    left: 218px;
+  }
+  .hero-description-v2 {
+    text-align: justify;
+  }
+  .text-read-more-less,
+  .comp {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .pMobileCss {
+    display: block;
+  }
+  .mobileBtnText {
+    border: navajowhite;
+    background: white;
+    color: orange;
+    font-weight: bold;
+  }
+  .footer-contact-item {
+    width: 100%;
+  }
+  .skill-pill {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: 12px;
+    font-weight: bold;
   }
 }

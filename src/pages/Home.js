@@ -22,12 +22,19 @@ import img6 from "../IMG/Certificates/cert15.jpg";
 import img7 from "../IMG/Certificates/cert3.jpg";
 import img8 from "../IMG/Certificates/cert1.png";
 import img9 from "../IMG/Certificates/cert7.png";
+import { getDevice } from "../comps/helper";
 
 const Home = () => {
   const [selectedCert, setSelectedCert] = useState(null);
   const [showAllCertsModal, setShowAllCertsModal] = useState(false);
   const [certTitle, setCertTitle] = useState("All Certificates & Credentials");
-
+  const [readMoreLessBtn, setReadMoreLessBtn] = useState("Read More");
+  const [projectReadMoreLess, setProjectReadMoreLess] = useState([
+    { id: 0, value: "Read More" },
+    { id: 1, value: "Read More" },
+    { id: 2, value: "Read More" },
+  ]);
+  const device = getDevice();
   const handleDownloadResume = () => {
     const link = document.createElement("a");
     link.href = resumePdf;
@@ -132,6 +139,22 @@ const Home = () => {
     { img: img8, title: "C/C++ Quiz Certification" },
     { img: img9, title: "Compiler Quiz Certification" },
   ];
+
+  const multipleReadMoreLessHandle = (itemId) => {
+    setProjectReadMoreLess((prev) =>
+      prev.map((item) =>
+        item.id === itemId
+          ? {
+              ...item,
+              value: item.value === "Read More" ? "Read Less" : "Read More",
+            }
+          : item,
+      ),
+    );
+  };
+
+  const getReadMoreLessProjectStatus = (idx) =>
+    projectReadMoreLess.find((item) => item?.id === idx)?.value;
 
   return (
     <div>
@@ -355,11 +378,13 @@ const Home = () => {
           </h2>
           <div className="info-card">
             <p
+              className={`text-read-more-less ${readMoreLessBtn === "Read Less" && device === "mobile" ? "pMobileCss" : ""}`}
               style={{
                 fontSize: "16px",
                 color: "#334155",
                 lineHeight: "1.7",
                 marginBottom: "20px",
+                textAlign: "justify",
               }}
             >
               <strong>
@@ -375,11 +400,25 @@ const Home = () => {
               teams, participating in code reviews, debugging, and delivering
               high-quality, maintainable software.
             </p>
+            {device === "mobile" && (
+              <button
+                className="mobileBtnText"
+                onClick={() => {
+                  if (readMoreLessBtn === "Read More")
+                    setReadMoreLessBtn("Read Less");
+                  else setReadMoreLessBtn("Read More");
+                }}
+              >
+                {readMoreLessBtn}
+              </button>
+            )}
 
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr",
+                ...(device !== "mobile" && {
+                  gridTemplateColumns: "1fr 1fr",
+                }),
                 gap: "20px",
                 borderTop: "1px solid #f1f5f9",
                 paddingTop: "20px",
@@ -455,14 +494,29 @@ const Home = () => {
                   <div className="exp-company">{exp.company}</div>
                   <div className="exp-date">📅 {exp.period}</div>
                   <p
+                    className={
+                      getReadMoreLessProjectStatus(idx) === "Read More" &&
+                      device === "mobile"
+                        ? `comp`
+                        : ""
+                    }
                     style={{
                       fontSize: "14px",
                       color: "#475569",
                       lineHeight: "1.6",
+                      textAlign: "justify",
                     }}
                   >
                     {exp.description}
                   </p>
+                  {device === "mobile" && (
+                    <button
+                      onClick={() => multipleReadMoreLessHandle(idx)}
+                      className="mobileBtnText"
+                    >
+                      {getReadMoreLessProjectStatus(idx)}
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -589,7 +643,13 @@ const Home = () => {
               >
                 <h3
                   style={{
-                    fontSize: "22px",
+                    ...(device === "mobile"
+                      ? {
+                          fontSize: "18px",
+                          marginTop: "8px",
+                          textAlign: "center",
+                        }
+                      : { fontSize: "22px" }),
                     fontWeight: 800,
                     color: "#0f172a",
                   }}

@@ -34,3 +34,21 @@
   background-color: #27bef5;
   color: white;
 }
+
+@media screen and (max-width: 768px) {
+  #certDialogBack,
+  #certDialogClose {
+    position: absolute;
+    top: 0;
+  }
+  #certDialogBack {
+    left: 0;
+    background-color: #27bef5;
+    border-radius: 0 0 8px 0;
+  }
+  #certDialogClose {
+    right: 0;
+    background-color: #f54927;
+    border-radius: 0 0 0 8px;
+  }
+}
