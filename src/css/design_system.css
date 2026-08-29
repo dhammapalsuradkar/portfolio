@@ -1084,7 +1084,7 @@ body {
 
 /* Footer Container */
 .footer-banner-wrapper {
-  margin: 40px 0 30px;
+  margin: 40px auto 30px;
 }
 
 .footer-bar {
@@ -1353,5 +1353,11 @@ body {
     border-radius: 0;
     font-size: 12px;
     font-weight: bold;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .main-container {
+    max-width: 1450px;
   }
 }
