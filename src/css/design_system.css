@@ -1315,6 +1315,12 @@ body {
   }
 }
 
+@media screen and (max-width: 360px) {
+  .hero-inner-container {
+    padding: 0 15px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .hero-dot-grid-center {
     top: 35px;
